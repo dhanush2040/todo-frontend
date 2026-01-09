@@ -22,7 +22,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       let info = localStorage.getItem("token");
-      let res = await fetch("http://localhost:5000/data", {
+      let res = await fetch("https://todo-backend-aneq.onrender.com/data", {
         headers: { "Content-Type": "application/json" },
         method: "POST",
         body: info,
@@ -76,7 +76,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       let token = JSON.parse(localStorage.getItem("token"));
-      let res = await fetch("http://localhost:5000/data/update", {
+      let res = await fetch("https://todo-backend-aneq.onrender.com/data/update", {
         headers: { "Content-Type": "application/json" },
         method: "PUT",
         body: JSON.stringify({

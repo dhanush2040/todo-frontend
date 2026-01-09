@@ -26,7 +26,7 @@ const Signup = () => {
               if (password.length >= 8) {
                 try {
                   setLoading(true);
-                  let res = await fetch("http://localhost:5000/auth/signup", {
+                  let res = await fetch("https://todo-backend-aneq.onrender.com/auth/signup", {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json",

@@ -36,7 +36,7 @@ const ResetPassword = ({ visible }) => {
                       setLoading(true);
                       let userData = JSON.parse(localStorage.getItem("token"));
                       let res = await fetch(
-                        "http://localhost:5000/auth/reset",
+                        "https://todo-backend-aneq.onrender.com/auth/reset",
                         {
                           method: "POST",
                           headers: {

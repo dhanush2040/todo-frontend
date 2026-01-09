@@ -26,7 +26,7 @@ const Profile = ({ visible }) => {
   async function fetchData() {
     try {
       let info = localStorage.getItem("token");
-      let res = await fetch("http://localhost:5000/data/profile", {
+      let res = await fetch("https://todo-backend-aneq.onrender.com/data/profile", {
         headers: { "Content-Type": "application/json" },
         method: "POST",
         body: info,
