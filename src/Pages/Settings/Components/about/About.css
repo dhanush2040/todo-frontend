@@ -1,0 +1,51 @@
+.reset-password-window-container {
+     width: 100%;
+     height: 100vh;
+     background-color: #000;
+}
+
+.about-info-container {
+     width: 92%;
+     height: 75%;
+     padding: 20px;
+     margin-left: 20px;
+     font-size: 22px;
+     text-align: left;
+     overflow-y: auto;
+}
+
+.about-info {
+     text-indent: 70px;
+}
+
+.about-info-container::-webkit-scrollbar {
+     width: 8px;
+}
+
+.about-info-container::-webkit-scrollbar-track {
+     background: transparent;
+}
+
+.about-info-container::-webkit-scrollbar-thumb {
+     background: transparent;
+}
+
+.about-info-container:hover::-webkit-scrollbar-thumb {
+     background: #ffffff33;
+     border-radius: 10px;
+}
+
+.about-info-title {
+     font-family: "Science Gothic", sans-serif;
+     font-weight: 700;
+     font-size: 28px;
+     display: block;
+}
+
+.features-list-items {
+     font-size: 20px;
+}
+
+.puropse-info-container {
+     text-indent: 70px;
+}

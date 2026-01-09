@@ -1,0 +1,37 @@
+.settings-icon-info-container {
+     width: 150px;
+     position: absolute;
+     top: 55px;
+     right: 10px;
+     padding: 5px 7px;
+     border-radius: 10px;
+     background: #201e1e;
+     transition: .8s ease-in-out;
+     z-index: 100;
+}
+
+.logout-option {
+     background: #ff0000;
+}
+
+.option{
+     width: 100%;
+     display: flex;
+     align-items: center;
+     padding: 7px 8px;
+     margin-bottom: 10px;
+}
+
+.settings-option:hover {
+     background: #252525;
+}
+
+.logout-option:hover {
+     background: #b70404;
+}
+
+.option svg{
+     width: 30px;
+     height: 30px;
+     margin-right: 5px;
+}

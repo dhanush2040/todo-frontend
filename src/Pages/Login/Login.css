@@ -1,0 +1,119 @@
+*{
+     user-select: none;
+}
+
+:root{
+     --boxbg:#191919;
+}
+
+.box-container{
+     width: 100%;
+     height: 100%;
+     display: flex;
+     place-items: center;
+     justify-content: center;
+     align-items: center;
+}
+
+.login-container{
+     width: 45rem;
+     height: 25rem;
+     background-color: var(--boxbg);
+     display: flex;
+     flex-direction: row;
+     justify-content: start;
+     align-items: center;
+     padding: 2rem;
+     padding-top: 10px;
+     padding-bottom: 10px;
+     box-shadow: 0 0 10px rgba(0,0,0,0.5);
+     border-radius: 0.5rem;
+}
+
+.login-container img{
+     border: #191919 solid 2px;
+     width: 100%;
+     height: 100%;
+}
+.login-container hr{
+     position: relative;
+     left: 10px;
+     height: 300px;
+}
+
+.image-holder{
+     width: 15rem;
+}
+
+.form-container{
+     padding: 2rem;
+     text-align: left;
+}
+.form-container h2{
+     font-family: "Playwrite CZ", cursive;
+     text-align: left;
+     user-select: none;
+}
+.form-container .input-holder label{
+     display: block;
+     font-size: large;
+}
+.form-container .input-holder .indicator{
+     margin-left: 10px;
+     color: red;
+}
+
+.input-holder {
+     display: flex;
+     flex-direction: column;
+     align-items: start;
+}
+.input-holder:nth-child(2){
+     margin-bottom: 15px;
+}
+
+.input {
+     width: 300px;
+     height: 100%;
+     padding: 10px 15px;
+     font-size: large;
+     border-radius: 7px;
+     outline: none;
+     border: none;
+}
+.input::selection{
+     background: #d4cece;
+     color: var(--boxbg);
+}
+
+.input-holder + a {
+     color: #d4cece;
+     margin-bottom: 10px;
+     text-decoration: none;
+}
+
+.input-holder + a:hover {
+     text-decoration: underline;
+}
+
+.btn-container .sigin-link{
+     color: #d4cece;
+     margin-bottom: 10px;
+}
+.btn-container .sigin-link a:hover{
+     text-decoration: underline;
+}
+.btn-container {
+     margin-top: 25px;
+     margin-bottom: 25px;
+     display: flex;
+     align-items: center;
+}
+
+.btn{
+     background: #d4cece;
+     color: var(--boxbg);
+     position: relative;
+     left: 20px;
+     padding:10px 15px;
+}
