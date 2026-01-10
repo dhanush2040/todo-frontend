@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import server_url from "./../../../../server_url";
 import Loading from "./../../../../Components/Loading/Loading";
 import "./Cleardata.css";
 const Cleardata = ({ visible }) => {
@@ -10,7 +11,7 @@ const Cleardata = ({ visible }) => {
     try {
       setLoading(true);
       let token = JSON.parse(localStorage.getItem("token"));
-      let res = await fetch("https://todo-backend-aneq.onrender.com/data/update", {
+      let res = await fetch(`${server_url}/data/update`, {
         headers: { "Content-Type": "application/json" },
         method: "PUT",
         body: JSON.stringify({

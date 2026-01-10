@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import server_url from "../../server_url";
 import TodoImg from "./../../assets/sticky-note.png";
 import "./Login.css";
 const Login = () => {
@@ -18,7 +19,7 @@ const Login = () => {
   async function login() {
     if (validateUser()) {
       try {
-        let res = await fetch("https://todo-backend-aneq.onrender.com/auth/login", {
+        let res = await fetch(`${server_url}/auth/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

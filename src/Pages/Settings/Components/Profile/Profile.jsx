@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import server_url from "./../../../../server_url";
 import "./Profile.css";
 import Loading from "../../../../Components/Loading/Loading";
 import PieChart from "./Components/Piechart";
@@ -26,7 +27,7 @@ const Profile = ({ visible }) => {
   async function fetchData() {
     try {
       let info = localStorage.getItem("token");
-      let res = await fetch("https://todo-backend-aneq.onrender.com/data/profile", {
+      let res = await fetch(`${server_url}/data/profile`, {
         headers: { "Content-Type": "application/json" },
         method: "POST",
         body: info,

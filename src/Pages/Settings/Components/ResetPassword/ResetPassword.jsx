@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import server_url from "./../../../../server_url";
 import Loading from "../../../../Components/Loading/Loading";
 import "./ResetPassword.css";
 const ResetPassword = ({ visible }) => {
@@ -36,7 +37,7 @@ const ResetPassword = ({ visible }) => {
                       setLoading(true);
                       let userData = JSON.parse(localStorage.getItem("token"));
                       let res = await fetch(
-                        "https://todo-backend-aneq.onrender.com/auth/reset",
+                        `${server_url}/auth/reset`,
                         {
                           method: "POST",
                           headers: {

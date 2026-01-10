@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import server_url from "../../server_url";
 import TodoImg from "./../../assets/sticky-note.png";
 import Loading from "../../Components/Loading/Loading";
 const Signup = () => {
@@ -26,7 +27,7 @@ const Signup = () => {
               if (password.length >= 8) {
                 try {
                   setLoading(true);
-                  let res = await fetch("https://todo-backend-aneq.onrender.com/auth/signup", {
+                  let res = await fetch(`${server_url}/auth/signup`, {
                     method: "POST",
                     headers: {
                       "Content-Type": "application/json",

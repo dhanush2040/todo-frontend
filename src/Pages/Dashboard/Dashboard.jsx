@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import server_url from "../../server_url";
 import Loading from "./../../Components/Loading/Loading";
 import Profileicon from "../../Components/Profileicon/Profileicon";
 import "./Dashboard.css";
@@ -22,7 +23,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       let info = localStorage.getItem("token");
-      let res = await fetch("https://todo-backend-aneq.onrender.com/data", {
+      let res = await fetch(`${server_url}/data`, {
         headers: { "Content-Type": "application/json" },
         method: "POST",
         body: info,
@@ -76,7 +77,7 @@ const Dashboard = () => {
     try {
       setLoading(true);
       let token = JSON.parse(localStorage.getItem("token"));
-      let res = await fetch("https://todo-backend-aneq.onrender.com/data/update", {
+      let res = await fetch(`${server_url}/data/update`, {
         headers: { "Content-Type": "application/json" },
         method: "PUT",
         body: JSON.stringify({
