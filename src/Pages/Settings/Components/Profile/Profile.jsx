@@ -64,34 +64,37 @@ const Profile = ({ visible }) => {
               >
                 <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560v360Zm-80 80v-480l320-240 320 240v480H520v-240h-80v240H160Zm320-350Z" />
               </svg>
-              <span style={{color:"white"}}>Home</span>
+              <span style={{ color: "white" }}>Home</span>
             </button>
           </div>
           <div className="profile-data-container">
-            <table>
-              <tbody>
-                <tr>
-                  <td>User Name:</td>
-                  <td>{userData.username}</td>
-                </tr>
-                <tr>
-                  <td>User e-mail:</td>
-                  <td>{userData.useremail}</td>
-                </tr>
-                <tr>
-                  <td>Number of active task:</td>
-                  <td>{userData.todoListCount.activeTodo}</td>
-                </tr>
-                <tr>
-                  <td>Number of Completed task:</td>
-                  <td>{userData.todoListCount.completedStatus}</td>
-                </tr>
-                <tr>
-                  <td>Number of not Completed task:</td>
-                  <td>{userData.todoListCount.notCompletedStatus}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div className="profile-table-wrapper">
+              <table className="profile-table">
+                <tbody>
+                  <tr>
+                    <td>User Name</td>
+                    <td>{userData.username}</td>
+                  </tr>
+                  <tr>
+                    <td>User Email</td>
+                    <td>{userData.useremail}</td>
+                  </tr>
+                  <tr>
+                    <td>Active Tasks</td>
+                    <td>{userData.todoListCount.activeTodo}</td>
+                  </tr>
+                  <tr>
+                    <td>Completed Tasks</td>
+                    <td>{userData.todoListCount.completedStatus}</td>
+                  </tr>
+                  <tr>
+                    <td>Pending Tasks</td>
+                    <td>{userData.todoListCount.notCompletedStatus}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
             <div className="productive-chart-container">
               <PieChart
                 userData={{

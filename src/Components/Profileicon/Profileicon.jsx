@@ -9,14 +9,12 @@ const Profileicon = ({ open, setOpen }) => {
   return (
     <>
       <div
-        className="settings-icon-info-container"
-        style={{ right: open ? "10px" : "-200px" }}
-        onMouseLeave={() => setOpen(false)}
-        onMouseEnter={() => setOpen(true)}
+        className={`settings-icon-info-container ${open ? "open" : ""}`}
+        onClick={(e) => e.stopPropagation()}
       >
         <button
           className="settings-option option"
-          style={{color:"white"}}
+          style={{ color: "white" }}
           onClick={() => navigate("/settings")}
         >
           <svg

@@ -1,4 +1,4 @@
-.settings-icon-info-container {
+/* .settings-icon-info-container {
      width: 150px;
      position: absolute;
      top: 55px;
@@ -8,13 +8,35 @@
      background: #201e1e;
      transition: .8s ease-in-out;
      z-index: 100;
+} */
+
+.settings-icon-info-container {
+     width: 150px;
+     position: absolute;
+     top: 55px;
+     right: 10px;
+     padding: 5px 7px;
+     border-radius: 10px;
+     background: #201e1e;
+     z-index: 100;
+     transform: translateX(120%);
+     opacity: 0;
+     pointer-events: none;
+     transition: transform 0.8s ease, opacity 0.25s ease;
 }
+
+.settings-icon-info-container.open {
+     transform: translateX(0);
+     opacity: 1;
+     pointer-events: auto;
+}
+
 
 .logout-option {
      background: #ff0000;
 }
 
-.option{
+.option {
      width: 100%;
      display: flex;
      align-items: center;
@@ -30,8 +52,17 @@
      background: #b70404;
 }
 
-.option svg{
+.option svg {
      width: 30px;
      height: 30px;
      margin-right: 5px;
+}
+
+@media (max-width: 768px) {
+     .settings-icon-info-container {
+          width: calc(100vw - 20px);
+          left: 10px;
+          right: 10px;
+          top: 60px;
+     }
 }

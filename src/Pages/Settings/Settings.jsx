@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Profile from "./Components/Profile/Profile";
 import Cleardata from "./Components/Cleardata/Cleardata";
@@ -11,11 +11,22 @@ const Settings = () => {
   const [resetPasswordSection, setResetPasswordSection] = useState(false);
   const [aboutSection, setAboutSection] = useState(false);
   const [clearSection, setClearSection] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const closeMenu = () => setMenuOpen(false);
+    window.addEventListener("click", closeMenu);
+    return () => window.removeEventListener("click", closeMenu);
+  }, []);
+
   return (
     <>
       <div className="settings-window">
-        <div className="settings-option-container">
+        <div
+          className={`settings-option-container ${menuOpen ? "open" : ""}`}
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="settings-title-container">
             <span className="settings-title">Settings</span>
           </div>
@@ -35,6 +46,7 @@ const Settings = () => {
                   setAboutSection(false);
                   setClearSection(false);
                   setProfileSection(true);
+                  setMenuOpen(false);
                 }}
               >
                 <svg
@@ -64,6 +76,7 @@ const Settings = () => {
                   setAboutSection(false);
                   setProfileSection(false);
                   setClearSection(true);
+                  setMenuOpen(false);
                 }}
               >
                 <svg
@@ -89,6 +102,7 @@ const Settings = () => {
                   setAboutSection(false);
                   setClearSection(false);
                   setResetPasswordSection(true);
+                  setMenuOpen(false);
                 }}
               >
                 <svg
@@ -106,12 +120,16 @@ const Settings = () => {
             <div className="about-options-container">
               <button
                 className="about-options options"
-                style={{ background: aboutSection ? "#2c2a2aff" : "#101010", color:"white" }}
+                style={{
+                  background: aboutSection ? "#2c2a2aff" : "#101010",
+                  color: "white",
+                }}
                 onClick={() => {
                   setProfileSection(false);
                   setResetPasswordSection(false);
                   setClearSection(false);
                   setAboutSection(true);
+                  setMenuOpen(false);
                 }}
               >
                 <svg
@@ -158,11 +176,33 @@ const Settings = () => {
             </div>
           </div>
         </div>
+
         <div className="settings-tab-window">
-          <Profile visible={profileSection} />
-          <Cleardata visible={clearSection} />
-          <ResetPassword visible={resetPasswordSection} />
-          <About visible={aboutSection} />
+          <div className="menu-btn-container">
+            <button
+              className="menu-btn"
+              onClick={(e) => {
+                e.stopPropagation();
+                setMenuOpen(true);
+              }}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#fff"
+              >
+                <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+              </svg>
+            </button>
+          </div>
+          <div>
+            <Profile visible={profileSection} />
+            <Cleardata visible={clearSection} />
+            <ResetPassword visible={resetPasswordSection} />
+            <About visible={aboutSection} />
+          </div>
         </div>
       </div>
     </>

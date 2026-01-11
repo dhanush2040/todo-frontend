@@ -117,3 +117,18 @@
      left: 20px;
      padding:10px 15px;
 }
+
+
+@media (max-width: 768px) {
+     .login-container{
+          flex-direction: column;
+          width: 20rem;
+          height: auto;
+     }
+     .image-holder{
+          width: 0;
+     }
+     .login-container hr{
+          display: none;
+     }    
+}

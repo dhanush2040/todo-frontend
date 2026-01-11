@@ -72,3 +72,14 @@
      font-weight: 500;
      color: #fff;
 }
+
+@media (max-width: 768px) {
+     .warning-container {
+          width: 85%;
+          font-size: 18px;
+     }
+
+     .clear-btn-container {
+          margin-top: 50px;
+     }
+}

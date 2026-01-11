@@ -59,7 +59,10 @@ const Dashboard = () => {
         }),
       });
       let data = await res.json();
-      console.log(data);
+      if (data.status !== "ok") {
+        console.warn("Could not update data");
+        alert("Could not update data");
+      }
     } catch (err) {
       console.warn(err);
     }
@@ -100,6 +103,12 @@ const Dashboard = () => {
     }
   }, [todos, completedTodo, notCompletedTodo]);
 
+  useEffect(() => {
+    const close = () => setOption(false);
+    window.addEventListener("click", close);
+    return () => window.removeEventListener("click", close);
+  }, []);
+
   return (
     <>
       <Profileicon open={option} setOpen={setOption} />
@@ -114,7 +123,10 @@ const Dashboard = () => {
             <button
               className="profile-icon-btn"
               title="profile"
-              onClick={() => setOption(true)}
+              onClick={(e) => {
+                e.stopPropagation();
+                setOption((prev) => !prev);
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -142,10 +154,7 @@ const Dashboard = () => {
                 onKeyDown={(e) => addTodoOnEnter(e)}
                 autoFocus
               />
-              <button
-                onClick={addTodo}
-                style={{ color: "white" }}
-              >
+              <button onClick={addTodo} style={{ color: "white" }}>
                 Add
               </button>
             </div>
@@ -160,14 +169,7 @@ const Dashboard = () => {
             <div className="todo-items-container">
               {todos.length !== 0 && (
                 <>
-                  <h3
-                    className="todo-list-title"
-                    style={{
-                      marginRight: "57%",
-                    }}
-                  >
-                    Your Tasks
-                  </h3>
+                  <h3 className="todo-list-title">Your Tasks</h3>
                   {todos.map((todo) => (
                     <div key={todo.id} className="todo-item">
                       <span className="todo-list-items">{todo.text}</span>
@@ -247,12 +249,7 @@ const Dashboard = () => {
               )}
               {notCompletedTodo.length !== 0 && (
                 <>
-                  <h3
-                    className="todo-list-title"
-                    style={{ marginRight: "47%" }}
-                  >
-                    Not Completed Tasks
-                  </h3>
+                  <h3 className="todo-list-title">Not Completed Tasks</h3>
                   {notCompletedTodo.map((todo) => (
                     <div key={todo.id} className="todo-item">
                       <span className="todo-list-items completed-todo">

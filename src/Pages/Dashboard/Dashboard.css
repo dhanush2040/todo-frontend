@@ -1,9 +1,10 @@
 .window-container {
      width: 100%;
-     height: 100%;
-     align-items: start;
-     overflow: hidden;
-     z-index: 95;
+     min-height: 100vh;
+     display: flex;
+     flex-direction: column;
+     overflow-x: hidden;
+     overflow-y: auto;
 }
 
 .header {
@@ -27,6 +28,7 @@
      width: 40px;
      height: 40px;
      border-radius: 50%;
+     margin-top: 10px;
 }
 
 .profile-icon-btn {
@@ -79,10 +81,10 @@
 
 .todo-list-container {
      width: 100%;
-     height: 400px;
-     overflow-x: hidden;
+     flex: 1;
      overflow-y: auto;
 }
+
 
 .todo-items-container {
      display: flex;
@@ -91,6 +93,8 @@
      align-items: center;
      margin-top: 20px;
      padding: 20px;
+     overflow-x: hidden;
+     overflow-y: visible;
 }
 
 .todo-item {
@@ -108,9 +112,9 @@
 .todo-list-container .todo-list-title {
      font-family: "Science Gothic", sans-serif;
      font-size: x-large;
-     margin-bottom: 10px;
      text-align: left;
-     margin-right: 52%;
+     width: 100%;
+     margin: 20px 0 10px 350px;
 }
 
 .todo-list-items {
@@ -121,7 +125,7 @@
 .todo-btn-container {
      display: flex;
      flex-direction: row;
-     justify-content: space-between;
+     gap: 10px;
      align-items: center;
      margin-right: 20px;
      width: 18%;
@@ -135,7 +139,7 @@
      padding: 0px 10px;
 }
 
-.completed-todo-btn-container{
+.completed-todo-btn-container {
      display: flex;
      flex-direction: row;
      justify-content: center;
@@ -154,5 +158,64 @@
 
 @media (max-width: 768px) {
 
-     
+     #root,
+     body,
+     html {
+          overflow-x: hidden;
+     }
+
+     .window-container {
+          width: 100%;
+     }
+
+     .header {
+          width: 100%;
+          padding-top: 10px;
+     }
+
+     .todo-entry-container {
+          width: 100%;
+          margin-top: 20px;
+          overflow-x: hidden;
+     }
+
+     .todo-entry-container .entry-container {
+          width: 90%;
+          overflow-x: hidden;
+     }
+
+     .todo-list-container .todo-list-title {
+          text-align: left;
+          padding-left: 10px;
+          margin: 15px 0 10px 50px;
+     }
+
+     .todo-items-container {
+          padding-left: 0;
+          padding-bottom: 80px;
+          overflow-x: hidden;
+     }
+
+     .todo-btn-container {
+          width: 55%;
+          margin-right: 0px;
+     }
+
+     .todo-list-items {
+          width: 45%;
+          font-size: medium;
+          text-align: left;
+     }
+
+     .completed-todo-btn-container {
+          width: 50%;
+          margin-right: 15px;
+          justify-content: flex-end;
+     }
+
+     .tick-icon,
+     .x-icon {
+          padding: 0px 6px;
+     }
+
 }

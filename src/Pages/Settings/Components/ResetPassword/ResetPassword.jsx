@@ -36,19 +36,16 @@ const ResetPassword = ({ visible }) => {
                     try {
                       setLoading(true);
                       let userData = JSON.parse(localStorage.getItem("token"));
-                      let res = await fetch(
-                        `${server_url}/auth/reset`,
-                        {
-                          method: "POST",
-                          headers: {
-                            "Content-Type": "application/json",
-                          },
-                          body: JSON.stringify({
-                            ...Passwords,
-                            email: userData.useremail,
-                          }),
-                        }
-                      );
+                      let res = await fetch(`${server_url}/auth/reset`, {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          ...Passwords,
+                          email: userData.useremail,
+                        }),
+                      });
                       let data = await res.json();
                       if (data.status === "ok") {
                         setPassword((prev) => {
@@ -120,7 +117,7 @@ const ResetPassword = ({ visible }) => {
             </button>
           </div>
           <div className="reset-password-container">
-            <table>
+            <table className="reset-password-table">
               <tbody>
                 <tr className="reset-password-block">
                   <td>
@@ -207,7 +204,7 @@ const ResetPassword = ({ visible }) => {
             <div className="warning">{warning}</div>
             <div className="reset-password-btn-container">
               <button className="next-btn" onClick={submit}>
-                next
+                Update Password
               </button>
             </div>
           </div>

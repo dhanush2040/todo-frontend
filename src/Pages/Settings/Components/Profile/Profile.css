@@ -14,7 +14,7 @@
 }
 
 
-.settings-tab-title-conatainer > span {
+.settings-tab-title-conatainer>span {
      font-family: "Science Gothic", sans-serif;
      border-bottom: 2px solid #cdc9c9;
 }
@@ -26,11 +26,11 @@
      align-items: center;
 }
 
-.home-btn svg{
+.home-btn svg {
      margin-right: 5px;
 }
 
-.profile-data-container{
+.profile-data-container {
      width: 100%;
      height: 85%;
      display: flex;
@@ -43,4 +43,81 @@
      text-align: left;
      padding: 15px 15px 15px 10px;
      padding-left: 10px;
+}
+
+.profile-table-wrapper {
+     width: 100%;
+     max-width: 500px;
+     background: #121212;
+     margin-top: 70px;
+     border-radius: 14px;
+     padding: 10px;
+     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.profile-table {
+     width: 100%;
+     border-collapse: collapse;
+}
+
+.profile-table tr {
+     border-bottom: 1px solid #2a2a2a;
+}
+
+.profile-table tr:last-child {
+     border-bottom: none;
+}
+
+.profile-table td {
+     padding: 14px;
+     font-size: 18px;
+     color: #eaeaea;
+}
+
+.profile-table td:first-child {
+     color: #9b9b9b;
+     font-weight: 500;
+     width: 60%;
+}
+
+.profile-table td:last-child {
+     text-align: right;
+     font-weight: 600;
+     color: #ffffff;
+}
+
+.profile-table tr:hover {
+     background: #1e1e1e;
+}
+
+.productive-chart-container {
+     margin-top: 50px;
+}
+
+
+@media (max-width: 768px) {
+
+     .profile-table-wrapper {
+          padding: 10px;
+     }
+
+     .profile-table {
+          width: 95%;
+     }
+
+     .profile-data-container {
+          flex-direction: column;
+          height: auto;
+          margin: 0 7px;
+     }
+
+     .profile-data-container table tr td {
+          font-size: 16px;
+          padding: 10px 5px;
+     }
+
+     .productive-chart-container {
+          margin-top: 50px;
+          padding-right: 20px;
+     }
 }
