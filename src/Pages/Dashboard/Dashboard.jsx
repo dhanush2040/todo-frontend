@@ -7,7 +7,7 @@ import "./Dashboard.css";
 const Dashboard = () => {
   const navigate = useNavigate();
   const todoInput = useRef(null);
-  const [option , setOption] = useState(false);
+  const [option, setOption] = useState(false);
   const [todos, setTodos] = useState([]);
   const [completedTodo, setCompletedTodos] = useState([]);
   const [notCompletedTodo, setNotCompletedTodos] = useState([]);
@@ -17,13 +17,13 @@ const Dashboard = () => {
     if (!JSON.parse(localStorage.getItem("token"))) {
       navigate("/login");
     }
-  });
+  }, []);
 
   async function fetchData() {
     try {
       setLoading(true);
       let info = localStorage.getItem("token");
-      let res = await fetch(`${server_url}/data`, {
+      let res = await fetch(`${server_url}/data/todo`, {
         headers: { "Content-Type": "application/json" },
         method: "POST",
         body: info,
@@ -43,36 +43,6 @@ const Dashboard = () => {
     fetchData();
   }, []);
 
-  function addTodo() {
-    if (todoInput.current.value !== "") {
-      const data = { id: todos.length + 1, text: todoInput.current.value };
-      setTodos((prev) => [...prev, data]);
-      todoInput.current.value = "";
-    }
-  }
-
-  function addTodoOnEnter(e) {
-    if (e.key === "Enter") {
-      addTodo();
-    }
-  }
-
-  function setToCompleted(data) {
-    let removedData = todos.filter((info) => info.id !== data.id);
-    data.id = completedTodo.length + 1;
-    let addedData = [...completedTodo, data];
-    setTodos(removedData);
-    setCompletedTodos(addedData);
-  }
-
-  function setToNotCompleted(data) {
-    let removedData = todos.filter((info) => info.id !== data.id);
-    data.id = notCompletedTodo.length + 1;
-    let addedData = [...notCompletedTodo, data];
-    setTodos(removedData);
-    setNotCompletedTodos(addedData);
-  }
-
   async function updateData() {
     try {
       let token = JSON.parse(localStorage.getItem("token"));
@@ -89,26 +59,50 @@ const Dashboard = () => {
         }),
       });
       let data = await res.json();
+      console.log(data);
     } catch (err) {
       console.warn(err);
     }
   }
 
-  useEffect(() => {
-    updateData();
-  }, [todos]);
+  function addTodo() {
+    if (todoInput.current.value !== "") {
+      const data = { id: Date.now(), text: todoInput.current.value };
+      setTodos((prev) => [...prev, data]);
+      todoInput.current.value = "";
+    }
+  }
+
+  function addTodoOnEnter(e) {
+    if (e.key === "Enter") {
+      addTodo();
+      updateData();
+    }
+  }
+
+  function setToCompleted(data) {
+    let removedData = todos.filter((info) => info.id !== data.id);
+    let addedData = [...completedTodo, { ...data, id: Date.now() }];
+    setTodos(removedData);
+    setCompletedTodos(addedData);
+  }
+
+  function setToNotCompleted(data) {
+    let removedData = todos.filter((info) => info.id !== data.id);
+    let addedData = [...notCompletedTodo, { ...data, id: Date.now() }];
+    setTodos(removedData);
+    setNotCompletedTodos(addedData);
+  }
 
   useEffect(() => {
-    updateData();
-  }, [completedTodo]);
-
-  useEffect(() => {
-    updateData();
-  }, [notCompletedTodo]);
+    if (!loading) {
+      updateData();
+    }
+  }, [todos, completedTodo, notCompletedTodo]);
 
   return (
     <>
-      <Profileicon open = {option} setOpen={setOption}/>
+      <Profileicon open={option} setOpen={setOption} />
       <Loading status={loading} />
       <div
         className="window-container"
@@ -143,12 +137,17 @@ const Dashboard = () => {
               <input
                 type="text"
                 placeholder="What do you need to do?"
-                style={{color:"white"}}
+                style={{ color: "white" }}
                 ref={todoInput}
                 onKeyDown={(e) => addTodoOnEnter(e)}
                 autoFocus
               />
-              <button onClick={addTodo} style={{color:"white"}}>Add</button>
+              <button
+                onClick={addTodo}
+                style={{ color: "white" }}
+              >
+                Add
+              </button>
             </div>
           </div>
           <div className="todo-list-container">
@@ -175,9 +174,7 @@ const Dashboard = () => {
                       <div className="todo-btn-container">
                         <button
                           className="completed-btn btn"
-                          onClick={() => {
-                            setToCompleted(todo);
-                          }}
+                          onClick={() => setToCompleted(todo)}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -196,9 +193,7 @@ const Dashboard = () => {
                         </button>
                         <button
                           className="not-completed-btn btn"
-                          onClick={() => {
-                            setToNotCompleted(todo);
-                          }}
+                          onClick={() => setToNotCompleted(todo)}
                         >
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
