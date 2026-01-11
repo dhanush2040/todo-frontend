@@ -75,7 +75,6 @@ const Dashboard = () => {
 
   async function updateData() {
     try {
-      setLoading(true);
       let token = JSON.parse(localStorage.getItem("token"));
       let res = await fetch(`${server_url}/data/update`, {
         headers: { "Content-Type": "application/json" },
@@ -90,11 +89,8 @@ const Dashboard = () => {
         }),
       });
       let data = await res.json();
-      setLoading(false);
     } catch (err) {
       console.warn(err);
-    } finally {
-      setLoading(false);
     }
   }
 
